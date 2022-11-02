@@ -1,0 +1,121 @@
+commit 844a2a349e0ee18af5b7955278a94b5353e4c2ff
+Author: Rasmus S <rasmus.salmela@gmail.com>
+Date:   Wed Nov 2 15:53:36 2022 +0200
+
+    asd
+
+ tiedostoja/{file2 => file22} | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit ac263a4be3a4a290dac2306bbc699c03b569a744
+Author: Rasmus S <rasmus.salmela@gmail.com>
+Date:   Wed Nov 2 15:52:47 2022 +0200
+
+    asd
+
+ tiedostoja/file1 | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 9862ef2eb08a0e12117b9ff8b2ad84fe36dbf3df
+Author: Rasmus S <rasmus.salmela@gmail.com>
+Date:   Wed Nov 2 15:50:31 2022 +0200
+
+    new files
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 6aeb3804365b99adb6ee8e2fadd45d46ec0f02ac
+Author: Rasmus S <rasmus.salmela@gmail.com>
+Date:   Wed Nov 2 15:44:11 2022 +0200
+
+    -p harjoittelua
+
+ eka.txt    | 6 ++++--
+ kolmas.txt | 5 ++++-
+ 2 files changed, 8 insertions(+), 3 deletions(-)
+
+commit 58c561b9339ab1a5ce011f5f4305d21453e050f4
+Author: Rasmus S <rasmus.salmela@gmail.com>
+Date:   Wed Nov 2 15:40:50 2022 +0200
+
+    rename tiedosto
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 9bd4a5425401a5b8ddd40478a72d5533b8ca3005
+Author: Rasmus S <rasmus.salmela@gmail.com>
+Date:   Wed Nov 2 15:39:26 2022 +0200
+
+    poista toinen
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit c7effe13632f6409ae5104085e2c164c99c99bc2
+Author: Rasmus S <rasmus.salmela@gmail.com>
+Date:   Wed Nov 2 15:37:21 2022 +0200
+
+    asdf
+
+ tiedosto.txt | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit dc5c90de435a1e7e1d0b9d79d129e6aede9624cf
+Author: Rasmus S <rasmus.salmela@gmail.com>
+Date:   Wed Nov 2 15:36:29 2022 +0200
+
+    asd
+
+ tiedosto.txt | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+commit c9cc79ebb7c59b917b60b923fc8c0c93f6a7e537
+Author: Rasmus S <rasmus.salmela@gmail.com>
+Date:   Wed Nov 2 15:32:09 2022 +0200
+
+    lisää stuff
+
+ stuff/joku.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 5fdc0de4568908176aa25e396b843b06becaca6b
+Author: Rasmus S <rasmus.salmela@gmail.com>
+Date:   Wed Nov 2 15:31:15 2022 +0200
+
+    muutoksia
+
+ kolmas.txt | 1 +
+ toinen.txt | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit dd29378fc783be831ecb4fee683eb7bd00bab82e
+Author: Rasmus S <rasmus.salmela@gmail.com>
+Date:   Wed Nov 2 15:30:44 2022 +0200
+
+    lisää kolmas
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 989153c439e7003d6f39287900de13cf82beeac6
+Author: Rasmus S <rasmus.salmela@gmail.com>
+Date:   Wed Nov 2 15:20:40 2022 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit af9aa12f26566ea546c9d8c7e03f546843bb7754
+Author: Rasmus S <rasmus.salmela@gmail.com>
+Date:   Wed Nov 2 15:17:56 2022 +0200
+
+    tiedosto.txt lutou
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
