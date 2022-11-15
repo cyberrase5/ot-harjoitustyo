@@ -1,1 +1,2 @@
-[vaatimusmaarittely.md](dokumentaatio/vaatimusmaarittely.md)
+[vaatimusmaarittely.md](vaatimusmaarittely.md)
+[tuntikirjanpito.md](tuntikirjanpito.md)
