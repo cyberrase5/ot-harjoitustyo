@@ -10,6 +10,10 @@ def test(ctx):
     ctx.run("pytest src", pty=True)
 
 @task
+def initialize(ctx):
+    ctx.run("python3 src/initialize_database.py", pty=True)
+
+@task
 def coverage(ctx):
     ctx.run("coverage run --branch -m pytest", pty=True)
 
