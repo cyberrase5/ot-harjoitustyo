@@ -7,9 +7,10 @@ CREATE TABLE users (
 
 CREATE TABLE courses (
 	id SERIAL PRIMARY KEY,
-	course_name TEXT UNIQUE,
+	course_name TEXT,
 	ects INTEGER,
-	degree_id INTEGER
+	degree_id INTEGER,
+	mandatory BOOLEAN
 );
 
 CREATE TABLE participants (
