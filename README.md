@@ -1,10 +1,6 @@
-# Toivottavasti tähän tulee otsikko
+# Dokumentaatio
+[vaatimusmaarittely.md](harjoitustyo/dokumentaatio/vaatimusmaarittely.md)
 
-listan otsikko
-- eka
-- toka
+[tuntikirjanpito.md](harjoitustyo/dokumentaatio/tuntikirjanpito.md)
 
-[gitlog.txt](laskarit/viikko1/gitlog.txt)
-[komentorivi.txt](laskarit/viikko1/komentorivi.txt)
-
-paikallinen muutos
+[changelog.md](harjoitustyo/dokumentaatio/changelog.md)

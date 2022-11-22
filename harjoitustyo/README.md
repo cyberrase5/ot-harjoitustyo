@@ -1,6 +1,6 @@
 # Dokumentaatio
-[vaatimusmaarittely.md](/dokumentaatio/vaatimusmaarittely.md)
+[vaatimusmaarittely.md](dokumentaatio/vaatimusmaarittely.md)
 
-[tuntikirjanpito.md](/dokumentaatio/tuntikirjanpito.md)
+[tuntikirjanpito.md](dokumentaatio/tuntikirjanpito.md)
 
-[changelog.md](/dokumentaatio/changelog.md)
+[changelog.md](dokumentaatio/changelog.md)
