@@ -1,12 +1,17 @@
 from UserRepository import user_repository
 from initialize_database import initialize_database
+from tkinter import Tk
+from gui import UI
+
 
 def main():
-    print("Moi")
-    initialize_database()
-    db = user_repository
-    print(db.users_size())
-    
+    window = Tk()
+    window.title("Etusivu")
+
+    ui_view = UI(window)
+    ui_view.start()
+
+    window.mainloop()
 
 
 if __name__ == "__main__":

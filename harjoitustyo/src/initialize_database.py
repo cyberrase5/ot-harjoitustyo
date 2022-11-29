@@ -14,7 +14,9 @@ def drop_tables(connection):
 def create_tables(connection):
     cursor = connection.cursor()
 
-    cursor.execute("CREATE TABLE users (id SERIAL PRIMARY KEY, username TEXT UNIQUE, password TEXT, degree_id INTEGER)")
+    cursor.execute(
+        "CREATE TABLE users \
+            (id SERIAL PRIMARY KEY, username TEXT UNIQUE, password TEXT, degree_id INTEGER)")
 
     connection.commit()
 
@@ -24,6 +26,7 @@ def initialize_database():
 
     drop_tables(connection)
     create_tables(connection)
+
 
 def initialize_database_test():
     connection = test_connection()

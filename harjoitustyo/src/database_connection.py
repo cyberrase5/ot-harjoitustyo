@@ -10,6 +10,7 @@ connection.row_factory = sqlite3.Row
 def get_database_connection():
     return connection
 
+
 def test_connection():
     connection = sqlite3.connect("tests.db")
     connection.row_factory = sqlite3.Row
