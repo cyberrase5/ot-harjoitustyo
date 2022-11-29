@@ -8,9 +8,12 @@ class UserRepository:
     def add_user(self, username, password, degree):
         cursor = self._connection.cursor()
 
-        cursor.execute(
-            "INSERT INTO users \
-                (username, password, degree_id) VALUES (?, ?, ?)", (username, password, degree))
+        try:
+            cursor.execute(
+                "INSERT INTO users \
+                    (username, password, degree_id) VALUES (?, ?, ?)", (username, password, degree))
+        except:
+            print("Error")
 
         self._connection.commit()
 

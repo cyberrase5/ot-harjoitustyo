@@ -5,7 +5,7 @@
 
 # Viikko 4
 - Luo oma tietokanta testeille
-- Testaa, että lisätty käyttäjä oikeasti löytyy tietokannasta
+- Testaa, että lisätty käyttäjä oikeasti löytyy tietokannasta ja että kahta samannimistä ei ole olemassa
 - Pylint käyttöön
 - Session-luokan aloitus (Flask session-tyyppinen kopiointiyritys)
-- GUI rekisteröityminen
+- GUI rekisteröityminen (vain TKT-kandiopiskelijoille)

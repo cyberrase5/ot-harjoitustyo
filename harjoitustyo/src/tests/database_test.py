@@ -28,4 +28,12 @@ class TestUserRepository(unittest.TestCase):
 
         self.assertEqual(cursor.fetchone()[0], "moi123")
 
+    def test_unique_usernames(self):
+        cursor = user_repository._connection.cursor()
+        orgSize = user_repository.users_size()
+        user_repository.add_user("asd", "moi123", 1)
+        user_repository.add_user("asd", "moi123", 1)
+
+        self.assertEqual(user_repository.users_size(), orgSize + 1)
+
         

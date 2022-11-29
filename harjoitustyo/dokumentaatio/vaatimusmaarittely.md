@@ -14,5 +14,9 @@ Mahdollisia lisätoimintoja:
 - vertaa omaa arvosanaa muihin kurssin (ikinä) suorittaneisiin 
 
 
+# Toteutetut ominaisuudet
+- Tietojenkäsittelytieteen kandiohjelman opiskelija voi luoda käyttäjän
 
-Vaikuttaako tarpeeksi laajalta, tavoittelen vitosta? Saa ehdottaa muita toimintoja
+
+# Osittain toteutetut ominaisuudet
+- GUI, hyvä alku
