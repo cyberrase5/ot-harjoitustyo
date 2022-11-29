@@ -1,5 +1,3 @@
-from UserRepository import user_repository
-from initialize_database import initialize_database
 from tkinter import Tk
 from gui import UI
 
