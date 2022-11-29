@@ -1,1 +1,1 @@
-[Tietokantakaavio](images/database_diagram.png)
+![Tietokantakaavio](images/database_diagram.png)
