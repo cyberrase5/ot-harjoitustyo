@@ -1,0 +1,1 @@
+[Tietokantakaavio](images/database_diagram.png)

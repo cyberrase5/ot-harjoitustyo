@@ -8,3 +8,4 @@
 - Testaa, että lisätty käyttäjä oikeasti löytyy tietokannasta
 - Pylint käyttöön
 - Session-luokan aloitus (Flask session-tyyppinen kopiointiyritys)
+- GUI rekisteröityminen

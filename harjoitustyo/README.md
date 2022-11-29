@@ -4,3 +4,6 @@
 [tuntikirjanpito.md](dokumentaatio/tuntikirjanpito.md)
 
 [changelog.md](dokumentaatio/changelog.md)
+
+# TODO
+- Paljon refaktorointia
