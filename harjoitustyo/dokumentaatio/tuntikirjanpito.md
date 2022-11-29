@@ -1,1 +1,2 @@
-22.11.2022 ### Harjoitustyön tehtävien tekeminen
+22.11.2022 ### 4 tuntia, Harjoitustyön tehtävien tekeminen
+29.11.2022 ### 3 tuntia, pääasiassa GUI-säätäminen, yleinen materiaalien lukeminen

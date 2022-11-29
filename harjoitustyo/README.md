@@ -5,5 +5,18 @@
 
 [changelog.md](dokumentaatio/changelog.md)
 
+# Käteviä komentoja
+- poetry install (lataa riippuvuudet)
+- poetry run invoke initialize (luo tietokannan)
+- poetry run invoke start (käynnistää)
+
+- poetry run invoke test (ajaa testit)
+
+
+
+# Nykyiset toiminnot
+- Luo käyttäjä
+
+
 # TODO
 - Paljon refaktorointia
