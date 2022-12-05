@@ -56,17 +56,16 @@ class RegisterView:
             command=self._handle_login
         )
 
-        heading_label.pack()
+        heading_label.grid(row=0, column=0, columnspan=2)
 
-        username_label.pack()
-        username_entry.pack()
+        username_label.grid(row=1, column=0)
+        username_entry.grid(row=1, column=1)
 
-        password_label.pack()
-        password_entry.pack()
+        password_label.grid(row=2, column=0)
+        password_entry.grid(row=2, column=1)
 
-        radiobutton1.pack()
+        radiobutton1.grid(row=3, column=0)
 
-        radiobutton2.pack()
+        radiobutton2.grid(row=3, column=1)
 
-        button.pack()
-        login_button.pack()
+        button.grid(row=4, column=0, columnspan=2)
