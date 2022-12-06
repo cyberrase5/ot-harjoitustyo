@@ -55,4 +55,17 @@ class CourseRepository:
         return cursor.fetchone()
 
 
+    def course_exists(self, name, degree_id):
+
+        cursor = self._connection.cursor()
+
+        cursor.execute("SELECT 1 FROM courses WHERE course_name=? AND degree_id=?", [name, degree_id])
+
+        if cursor.fetchone():
+            return True
+
+        return False
+
+
+
 course_repository = CourseRepository(get_database_connection())

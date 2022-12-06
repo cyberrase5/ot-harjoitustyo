@@ -80,3 +80,4 @@ def initialize_database_test():
 
 if __name__ == "__main__":
     initialize_database()
+    initialize_database_test()

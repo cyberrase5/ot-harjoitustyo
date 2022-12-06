@@ -1,5 +1,6 @@
 import unittest
 from UserRepository import user_repository
+from CourseRepository import course_repository
 from database_connection import test_connection
 from initialize_database import initialize_database_test
 
@@ -49,5 +50,14 @@ class TestUserRepository(unittest.TestCase):
 
         self.assertTrue(user_repository.authenticate_login("asd", "moi123"))
         self.assertFalse(user_repository.authenticate_login("kakka", "pissa"))
+
+    def test_adding_compsci_mandatory_courses_works(self):
+
+        # added in test database initialization
+        self.assertTrue(course_repository.course_exists("Ohjelmoinnin perusteet", 1))
+        self.assertTrue(course_repository.course_exists("Ohjelmoinnin jatkokurssi", 1))
+        self.assertTrue(course_repository.course_exists("Johdatus tietojenkäsittelytieteeseen", 1))
+        self.assertTrue(course_repository.course_exists("Tietokantojen perusteet", 1))
+        self.assertTrue(course_repository.course_exists("Tietokoneen toiminta", 1))
 
         

@@ -15,6 +15,7 @@ class UserRepository:
                     (username, password, degree_id) VALUES (?, ?, ?)", (username, password, degree))
         except:
             print("Error")
+            self._connection.commit() # dumb but too slow otherwise
             return
 
         self._connection.commit()
