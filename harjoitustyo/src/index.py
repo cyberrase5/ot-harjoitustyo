@@ -1,10 +1,10 @@
 from tkinter import Tk
-from gui import UI
+from gui.ui import UI
 
 
 def main():
     window = Tk()
-    window.title("Etusivu")
+    window.title("Sisu 2.0")
 
     ui_view = UI(window)
     ui_view.start()
