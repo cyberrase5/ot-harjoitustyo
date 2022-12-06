@@ -1,3 +1,6 @@
+## Ohjaajalle
+- Testikattavuusraportin generointi onnistuu kyllä minulla (poetry run invoke coverage-report)
+
 # Dokumentaatio
 [vaatimusmaarittely.md](dokumentaatio/vaatimusmaarittely.md)
 

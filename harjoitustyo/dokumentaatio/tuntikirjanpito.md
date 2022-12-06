@@ -4,4 +4,4 @@
 5.12.2022 ### 1 tunti, GUI säätöä
 6.12.2022 ### 4 tuntia, GUI ja tietokannan säätämistä
 
-= 9 tuntia
+= 13 tuntia

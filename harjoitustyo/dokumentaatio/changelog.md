@@ -14,4 +14,4 @@
 - Session toteuttaminen
 - GUIn kautta voi nyt kirjautua sisään ja ulos sekä rekisteröityä
 - Datan esittämistä kivassa muodossa
-- Lisää pari testiä
+- Lisätty pari testiä
