@@ -36,6 +36,7 @@ def create_tables(connection):
 
 
 def insert_mandatory_courses_parent(connection):
+    
     insert_mandatory_courses_compsci(connection)
 
 
@@ -74,6 +75,7 @@ def initialize_database_test():
 
     drop_tables(connection)
     create_tables(connection)
+    insert_mandatory_courses_parent(connection)
 
 
 if __name__ == "__main__":

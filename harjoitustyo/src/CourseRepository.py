@@ -10,6 +10,8 @@ class CourseRepository:
 
         cursor.execute("INSERT INTO courses (course_name, ects, degree_id, mandatory) VALUES (?, ?, ?, ?)", [name, ects, degree_id, mandatory])
 
+        self._connection.commit()
+
     def add_enrollment(self, user_id, course_id):
         cursor = self._connection.cursor()
 
