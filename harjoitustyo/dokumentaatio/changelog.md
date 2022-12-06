@@ -9,3 +9,8 @@
 - Pylint käyttöön
 - Session-luokan aloitus (Flask session-tyyppinen kopiointiyritys)
 - GUI rekisteröityminen (vain TKT-kandiopiskelijoille)
+
+# Viikko 5
+- Session toteuttaminen
+- GUIn kautta voi nyt kirjautua sisään ja ulos sekä rekisteröityä
+- Datan esittämistä kivassa muodossa
