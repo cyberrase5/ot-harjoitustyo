@@ -1,5 +1,6 @@
 from gui.register_view import RegisterView
 from gui.login_view import LoginView
+from gui.main_view import MainView
 
 class UI:
     def __init__(self, root):
@@ -32,7 +33,18 @@ class UI:
 
         self._current_view = LoginView(
             self._root,
-            self._handle_register_view
+            self._handle_register_view,
+            self._handle_main_view
+        )
+
+        self._current_view.pack()
+
+    def _show_main_view(self):
+        self._hide_current_view()
+
+        self._current_view = MainView(
+            self._root,
+            self._handle_login_view
         )
 
         self._current_view.pack()
@@ -42,6 +54,9 @@ class UI:
 
     def _handle_register_view(self):
         self._show_register_view()
+
+    def _handle_main_view(self):
+        self._show_main_view()
 
 
 

@@ -7,7 +7,6 @@ class RegisterView:
         self._root = root
         self._frame = None
 
-        self._root = root
         self._username = None
         self._password = None
         self._degree_id = None
@@ -37,18 +36,18 @@ class RegisterView:
         password.set("")
         degree_id = IntVar()
         
-        heading_label = ttk.Label(master=self._root, text="Rekisteröidy")
+        heading_label = ttk.Label(master=self._frame, text="Rekisteröidy")
 
-        username_label = ttk.Label(master=self._root, text="Käyttäjätunnus")
-        username_entry = ttk.Entry(master=self._root, textvariable=username)
+        username_label = ttk.Label(master=self._frame, text="Käyttäjätunnus")
+        username_entry = ttk.Entry(master=self._frame, textvariable=username)
 
-        password_label = ttk.Label(master=self._root, text="Salasana")
-        password_entry = ttk.Entry(master=self._root, textvariable=password)
+        password_label = ttk.Label(master=self._frame, text="Salasana")
+        password_entry = ttk.Entry(master=self._frame, textvariable=password)
 
-        radiobutton1 = ttk.Radiobutton(master=self._root, text="Tietojenkäsittelytieteen kandiohjelma", variable=degree_id, value=1)
-        radiobutton2 = ttk.Radiobutton(master=self._root, text="Älä paina", variable=degree_id, value=2)
+        radiobutton1 = ttk.Radiobutton(master=self._frame, text="Tietojenkäsittelytieteen kandiohjelma", variable=degree_id, value=1)
+        radiobutton2 = ttk.Radiobutton(master=self._frame, text="Älä paina", variable=degree_id, value=2)
 
-        button = ttk.Button(master=self._root, text="Luo käyttäjä", command=lambda: create_user(self))
+        button = ttk.Button(master=self._frame, text="Luo käyttäjä", command=lambda: create_user(self))
 
         login_button = ttk.Button(
             master=self._frame,
@@ -69,3 +68,4 @@ class RegisterView:
         radiobutton2.grid(row=3, column=1)
 
         button.grid(row=4, column=0, columnspan=2)
+        login_button.grid(row=6, column=0, columnspan=2)
