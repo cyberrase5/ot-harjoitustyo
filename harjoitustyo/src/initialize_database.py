@@ -72,6 +72,7 @@ def initialize_database():
 
 def initialize_database_test():
     connection = test_connection()
+    course_repository._connection = test_connection()
 
     drop_tables(connection)
     create_tables(connection)
