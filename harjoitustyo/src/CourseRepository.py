@@ -81,7 +81,8 @@ class CourseRepository:
 
         course_id = self.get_course_id(course_name, degree_id)
 
-        self.add_enrollment(user_id, course_id)
+        if not self.already_enrolled(user_id, course_id):
+            self.add_enrollment(user_id, course_id)
 
 
     def get_course_id(self, course_name, degree_id):
@@ -90,6 +91,23 @@ class CourseRepository:
         cursor.execute("SELECT rowid FROM courses WHERE course_name=? AND degree_id=?", [course_name, degree_id])
 
         return cursor.fetchone()[0]
+
+    def delete_enrollment(self, user_id, course_id):
+        cursor = self._connection.cursor()
+
+        cursor.execute("DELETE FROM participants WHERE user_id=? AND course_id=?", [user_id, course_id])
+
+        self._connection.commit()
+
+    def already_enrolled(self, user_id, course_id):
+        cursor = self._connection.cursor()
+
+        cursor.execute("SELECT 1 FROM participants WHERE user_id=? AND course_id=?", [user_id, course_id])
+
+        if cursor.fetchone():
+            return True
+
+        return False
 
 
 
