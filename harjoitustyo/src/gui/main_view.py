@@ -39,7 +39,7 @@ class MainView:
         course_operations_button.grid(row=1, column=0)
 
         gpa_str = course_repository.calculate_GPA(session._user_id)
-        gpa_text = "Opintojen keskiarvo: " + str(gpa_str)
+        gpa_text = "Opintojen keskiarvo: " + str(gpa_str)[0:4]
         gpa_label = ttk.Label(master=self._frame, text=gpa_text)
         gpa_label.grid(row=2, column=0)
 

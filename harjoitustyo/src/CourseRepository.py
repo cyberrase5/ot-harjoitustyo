@@ -68,6 +68,9 @@ class CourseRepository:
         return False
 
     def update_grade(self, course_id, user_id, grade):
+        if 0 > int(grade) or int(grade) > 5:
+            return
+
         cursor = self._connection.cursor()
 
         cursor.execute("UPDATE participants SET grade=? WHERE course_id=? AND user_id=?", [grade, course_id, user_id])
@@ -121,6 +124,32 @@ class CourseRepository:
 
         return cursor.fetchone()[0]
 
+    def courses_size(self):
+        cursor = self._connection.cursor()
+
+        cursor.execute("SELECT COUNT(*) FROM courses")
+
+        return cursor.fetchone()[0]
+
+    def participants_size(self):
+        cursor = self._connection.cursor()
+
+        cursor.execute("SELECT COUNT(*) FROM participants")
+
+        return cursor.fetchone()[0]
+
+
+    # t_ functions, only used for testing
+
+    def t_enrollment_exists(self, user_id, course_id, grade):
+        cursor = self._connection.cursor()
+
+        cursor.execute("SELECT 1 FROM participants WHERE course_id=? AND user_id=? AND grade=?", [course_id, user_id, grade])
+
+        if cursor.fetchone():
+            return True
+
+        return False
 
 
 course_repository = CourseRepository(get_database_connection())

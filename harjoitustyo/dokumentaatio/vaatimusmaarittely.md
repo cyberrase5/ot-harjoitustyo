@@ -17,9 +17,13 @@ Mahdollisia lisätoimintoja:
 # Toteutetut ominaisuudet
 - Tietojenkäsittelytieteen kandiohjelman opiskelija voi luoda käyttäjän
 - GUIn kautta voi kirjautua sisään ja ulos sekä luoda käyttäjän
+- Päivitä kurssin arvosanaa
+- Lisää kurssi opintosuunnitelmaan
+- Poista kurssi opintosuunnitelmasta
+- Tarkista oma keskiarvo
 
 
 # Osittain toteutetut ominaisuudet
-- GUI, hyvin keskivaiheessa
+- GUI, aikalailla valmis
 - Osan pakollisista kursseista voi lisätä
 - Em. kursseista voi nähdä arvosanansa (vakiona ei suoritettu)

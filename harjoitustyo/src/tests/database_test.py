@@ -51,6 +51,7 @@ class TestUserRepository(unittest.TestCase):
         self.assertTrue(user_repository.authenticate_login("asd", "moi123"))
         self.assertFalse(user_repository.authenticate_login("kakka", "pissa"))
 
+
     def test_adding_compsci_mandatory_courses_works(self):
 
         # added in test database initialization
@@ -60,4 +61,34 @@ class TestUserRepository(unittest.TestCase):
         self.assertTrue(course_repository.course_exists("Tietokantojen perusteet", 1))
         self.assertTrue(course_repository.course_exists("Tietokoneen toiminta", 1))
 
-        
+
+    def test_add_course_to_curriculum_no_course_duplicates(self):
+        courses_initial_size = course_repository.courses_size()
+
+        course_repository.add_course_to_curriculum("JYM", 5, 1, 1)
+        self.assertEqual(course_repository.courses_size(), courses_initial_size + 1)
+
+        course_repository.add_course_to_curriculum("JYM", 5, 1, 2) # different user
+        self.assertEqual(course_repository.courses_size(), courses_initial_size + 1)
+
+
+    def test_add_course_to_curriculum_no_enrollment_duplicates(self):
+        participants_initial_size = course_repository.participants_size()
+
+        course_repository.add_course_to_curriculum("JYM", 5, 1, 1)
+        self.assertEqual(course_repository.participants_size(), participants_initial_size + 1)
+
+        course_repository.add_course_to_curriculum("JYM", 5, 1, 1) # same course, same user
+        self.assertEqual(course_repository.participants_size(), participants_initial_size + 1)
+
+
+    def test_update_grade_between_zero_five(self):
+
+        course_repository.add_enrollment(1, 1) # Default grade is -1
+
+        # Grade shouldn't have been changed
+        course_repository.update_grade(1, 1, -5)
+        self.assertTrue(course_repository.t_enrollment_exists(1, 1, -1))
+
+        course_repository.update_grade(1, 1, 6)
+        self.assertTrue(course_repository.t_enrollment_exists(1, 1, -1))
