@@ -46,6 +46,8 @@ class UserRepository:
 
         return False
 
+    def update_grade(self):
+        cursor = self._connection.cursor()
     
 
 user_repository = UserRepository(get_database_connection())

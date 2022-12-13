@@ -39,7 +39,8 @@ class CourseRepository:
     def get_course_data_mainpage(self):
         cursor = self._connection.cursor()
 
-        sql = "SELECT C.course_name, P.grade FROM courses C, participants P, users U WHERE C.rowid=P.course_id AND P.user_id=U.rowid AND U.rowid=?"
+        sql = "SELECT C.course_name, P.grade, C.rowid FROM courses C, participants P, users U "\
+            "WHERE C.rowid=P.course_id AND P.user_id=U.rowid AND U.rowid=? ORDER BY C.rowid ASC"
 
         cursor.execute(sql, [session._user_id])
 
@@ -65,6 +66,13 @@ class CourseRepository:
             return True
 
         return False
+
+    def update_grade(self, course_id, user_id, grade):
+        cursor = self._connection.cursor()
+
+        cursor.execute("UPDATE participants SET grade=? WHERE course_id=? AND user_id=?", [grade, course_id, user_id])
+
+        self._connection.commit()
 
 
 
