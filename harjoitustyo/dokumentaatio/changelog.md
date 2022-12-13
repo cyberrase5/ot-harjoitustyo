@@ -21,3 +21,4 @@
 - Lisätty arvosanan päivittäminen opintosuunnitelmaan
 - Lisätty kurssin poistaminen opintosuunnitelmasta
 - Lisää GUI-sivu näille
+- Tarkasta omien opintojen keskiarvo

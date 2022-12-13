@@ -3,5 +3,6 @@
 1.12.2022 ### 1 tunti, GUI harjoittelua
 5.12.2022 ### 1 tunti, GUI säätöä
 6.12.2022 ### 4 tuntia, GUI ja tietokannan säätämistä
+13.12.2022 ### 3 tuntia, KAn näkeminen, kurssien lisääminen ja poistaminen, GUI aikalailla loppuun
 
 = 13 tuntia

@@ -10,7 +10,7 @@ fail-under=10.0
 
 # Add files or directories to the blacklist. They should be base names, not
 # paths.
-ignore=CVS,ui,tests,gui.py
+ignore=CVS,ui,tests,src/gui
 
 # Add files or directories matching the regex patterns to the blacklist. The
 # regex matches against base names, not paths.
@@ -70,7 +70,10 @@ disable=raw-checker-failed,
         use-symbolic-message-instead,
         missing-module-docstring,
         missing-function-docstring,
-        missing-class-docstring
+        missing-class-docstring,
+        W0212,
+        W0702,
+
 
 # Enable the message, report, category or checker with the given id(s). You can
 # either give multiple identifier separated by comma (,) or put this option
@@ -259,7 +262,7 @@ indent-after-paren=4
 indent-string='    '
 
 # Maximum number of characters on a single line.
-max-line-length=100
+max-line-length=110
 
 # Maximum number of lines in a module.
 max-module-lines=1000

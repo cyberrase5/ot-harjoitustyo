@@ -8,14 +8,16 @@ class CourseRepository:
     def add_course(self, name, ects, degree_id, mandatory):
         cursor = self._connection.cursor()
 
-        cursor.execute("INSERT INTO courses (course_name, ects, degree_id, mandatory) VALUES (?, ?, ?, ?)", [name, ects, degree_id, mandatory])
+        cursor.execute("INSERT INTO courses (course_name, ects, degree_id, mandatory)"\
+            " VALUES (?, ?, ?, ?)", [name, ects, degree_id, mandatory])
 
         self._connection.commit()
 
     def add_enrollment(self, user_id, course_id):
         cursor = self._connection.cursor()
 
-        cursor.execute("INSERT INTO participants (user_id, course_id, grade) VALUES (?, ?, -1)", [user_id, course_id])
+        cursor.execute("INSERT INTO participants (user_id, course_id, grade) "\
+            "VALUES (?, ?, -1)", [user_id, course_id])
 
         self._connection.commit()
 
@@ -23,7 +25,8 @@ class CourseRepository:
 
         cursor = self._connection.cursor()
 
-        cursor.execute("SELECT rowid FROM courses WHERE degree_id=? AND mandatory=1", [degree_id])
+        cursor.execute("SELECT rowid FROM courses WHERE degree_id=? "\
+            "AND mandatory=1", [degree_id])
 
         ret = cursor.fetchall()
 
@@ -73,7 +76,8 @@ class CourseRepository:
 
         cursor = self._connection.cursor()
 
-        cursor.execute("UPDATE participants SET grade=? WHERE course_id=? AND user_id=?", [grade, course_id, user_id])
+        cursor.execute("UPDATE participants SET grade=? WHERE course_id=? AND user_id=?",
+         [grade, course_id, user_id])
 
         self._connection.commit()
 
@@ -95,21 +99,24 @@ class CourseRepository:
     def get_course_id(self, course_name, degree_id):
         cursor = self._connection.cursor()
 
-        cursor.execute("SELECT rowid FROM courses WHERE course_name=? AND degree_id=?", [course_name, degree_id])
+        cursor.execute("SELECT rowid FROM courses WHERE course_name=? AND degree_id=?",
+         [course_name, degree_id])
 
         return cursor.fetchone()[0]
 
     def delete_enrollment(self, user_id, course_id):
         cursor = self._connection.cursor()
 
-        cursor.execute("DELETE FROM participants WHERE user_id=? AND course_id=?", [user_id, course_id])
+        cursor.execute("DELETE FROM participants WHERE user_id=? AND course_id=?",
+         [user_id, course_id])
 
         self._connection.commit()
 
     def already_enrolled(self, user_id, course_id):
         cursor = self._connection.cursor()
 
-        cursor.execute("SELECT 1 FROM participants WHERE user_id=? AND course_id=?", [user_id, course_id])
+        cursor.execute("SELECT 1 FROM participants WHERE user_id=? AND course_id=?",
+         [user_id, course_id])
 
         if cursor.fetchone():
             return True
@@ -120,7 +127,8 @@ class CourseRepository:
         cursor = self._connection.cursor()
 
         cursor.execute("SELECT SUM(C.ects * P.grade)/CAST(SUM(C.ects) AS REAL) "\
-            "FROM participants P, courses C WHERE P.course_id=C.rowid AND P.user_id=? AND P.grade!=-1", [user_id])
+            "FROM participants P, courses C WHERE P.course_id=C.rowid "\
+                "AND P.user_id=? AND P.grade!=-1", [user_id])
 
         return cursor.fetchone()[0]
 
@@ -144,7 +152,8 @@ class CourseRepository:
     def t_enrollment_exists(self, user_id, course_id, grade):
         cursor = self._connection.cursor()
 
-        cursor.execute("SELECT 1 FROM participants WHERE course_id=? AND user_id=? AND grade=?", [course_id, user_id, grade])
+        cursor.execute("SELECT 1 FROM participants WHERE course_id=? "\
+            "AND user_id=? AND grade=?", [course_id, user_id, grade])
 
         if cursor.fetchone():
             return True

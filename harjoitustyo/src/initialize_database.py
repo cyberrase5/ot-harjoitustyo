@@ -36,7 +36,7 @@ def create_tables(connection):
 
 
 def insert_mandatory_courses_parent(connection):
-    
+
     insert_mandatory_courses_compsci(connection)
 
 
@@ -48,7 +48,7 @@ def insert_mandatory_courses_compsci(connection):
     course_repository.add_course("Johdatus tietojenkäsittelytieteeseen", 5, 1, True)
     course_repository.add_course("Tietokantojen perusteet", 5, 1, True)
     course_repository.add_course("Tietokoneen toiminta", 5, 1, True)
-    
+
 
     # pakolliset aineopinnot
 
