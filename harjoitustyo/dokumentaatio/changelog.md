@@ -15,3 +15,9 @@
 - GUIn kautta voi nyt kirjautua sisään ja ulos sekä rekisteröityä
 - Datan esittämistä kivassa muodossa
 - Lisätty pari testiä
+
+# Viikko 6
+- Lisätty kurssin lisääminen opintosuunnitelmaan
+- Lisätty arvosanan päivittäminen opintosuunnitelmaan
+- Lisätty kurssin poistaminen opintosuunnitelmasta
+- Lisää GUI-sivu näille

@@ -25,6 +25,7 @@ class CoursesOperationsView:
         update_course_grade = StringVar()
         add_course_name = StringVar()
         add_ects = StringVar()
+        delete_id = StringVar()
 
         def update_grade():
             course_id = update_course_id.get()
@@ -40,6 +41,12 @@ class CoursesOperationsView:
             user_id = session._user_id
 
             course_repository.add_course_to_curriculum(course_name, ects, degree_id, user_id)
+
+        def delete_enrollment():
+            del_id = delete_id.get()
+            user_id = session._user_id
+
+            course_repository.delete_enrollment(user_id, del_id)
 
 
         heading_label = ttk.Label(master=self._frame, text="Lisää kurssi tai päivitä arvosanaa")
@@ -91,9 +98,27 @@ class CoursesOperationsView:
         add_ects_entry.grid(row=7, column=1)
         add_button.grid(row=8, column=0, columnspan=2)
 
+
+        # Deleting a enrollment
+        delete_main_label = ttk.Label(master=self._frame, text="Poista kurssi opintosuunnitelmasta")
+
+        delete_id_label = ttk.Label(master=self._frame, text="Kurssin id")
+        delete_id_entry = ttk.Entry(master=self._frame, textvariable=delete_id)
+
+        delete_button = ttk.Button(
+            master=self._frame,
+            text="Poista kurssi",
+            command=lambda: delete_enrollment()
+        )
+
+        delete_main_label.grid(row=9, column=0, columnspan=2)
+        delete_id_label.grid(row=10, column=0)
+        delete_id_entry.grid(row=10, column=1)
+        delete_button.grid(row=11, column=0, columnspan=2)
+
         return_button = ttk.Button(
             master=self._frame,
             text="Takaisin",
             command=self._handle_main_view
         )
-        return_button.grid(row=9, column=0, columnspan=2)
+        return_button.grid(row=12, column=0, columnspan=2)

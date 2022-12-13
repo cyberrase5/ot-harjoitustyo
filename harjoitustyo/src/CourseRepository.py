@@ -75,6 +75,10 @@ class CourseRepository:
         self._connection.commit()
 
     def add_course_to_curriculum(self, course_name, ects, degree_id, user_id):
+        '''
+        Creates a course if it doesn't exist,
+        adds entry to table participants with args
+        '''
 
         if not self.course_exists(course_name, degree_id):
             self.add_course(course_name, ects, degree_id, 0)
