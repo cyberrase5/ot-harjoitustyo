@@ -113,6 +113,14 @@ class CourseRepository:
 
         return False
 
+    def calculate_GPA(self, user_id):
+        cursor = self._connection.cursor()
+
+        cursor.execute("SELECT SUM(C.ects * P.grade)/CAST(SUM(C.ects) AS REAL) "\
+            "FROM participants P, courses C WHERE P.course_id=C.rowid AND P.user_id=? AND P.grade!=-1", [user_id])
+
+        return cursor.fetchone()[0]
+
 
 
 course_repository = CourseRepository(get_database_connection())
