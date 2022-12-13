@@ -74,6 +74,23 @@ class CourseRepository:
 
         self._connection.commit()
 
+    def add_course_to_curriculum(self, course_name, ects, degree_id, user_id):
+
+        if not self.course_exists(course_name, degree_id):
+            self.add_course(course_name, ects, degree_id, 0)
+
+        course_id = self.get_course_id(course_name, degree_id)
+
+        self.add_enrollment(user_id, course_id)
+
+
+    def get_course_id(self, course_name, degree_id):
+        cursor = self._connection.cursor()
+
+        cursor.execute("SELECT rowid FROM courses WHERE course_name=? AND degree_id=?", [course_name, degree_id])
+
+        return cursor.fetchone()[0]
+
 
 
 course_repository = CourseRepository(get_database_connection())

@@ -22,4 +22,5 @@
 
 
 # TODO
-- Paljon refaktorointia
+- Tarkista, ettei kurssia ole olemassa
+- Tarkista arvosanan päivityksen kentät
