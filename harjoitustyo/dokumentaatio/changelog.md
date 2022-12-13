@@ -22,3 +22,4 @@
 - Lisätty kurssin poistaminen opintosuunnitelmasta
 - Lisää GUI-sivu näille
 - Tarkasta omien opintojen keskiarvo
+- Lisätty pari testiä
