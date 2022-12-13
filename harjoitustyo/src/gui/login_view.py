@@ -32,7 +32,7 @@ class LoginView:
 
             # update session
             ids = course_repository.get_user_id_and_degree_id(username)
-            session.set_vars(ids[0], ids[1])
+            session.set_vars(ids[0], ids[1]) # sets "session" variables
 
             self._handle_main()
     

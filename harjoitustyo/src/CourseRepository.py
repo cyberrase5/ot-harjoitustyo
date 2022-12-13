@@ -6,6 +6,9 @@ class CourseRepository:
         self._connection = connection
 
     def add_course(self, name, ects, degree_id, mandatory):
+        '''
+        Creates a course
+        '''
         cursor = self._connection.cursor()
 
         cursor.execute("INSERT INTO courses (course_name, ects, degree_id, mandatory)"\
@@ -14,6 +17,9 @@ class CourseRepository:
         self._connection.commit()
 
     def add_enrollment(self, user_id, course_id):
+        '''
+        Creates entry to table participants
+        '''
         cursor = self._connection.cursor()
 
         cursor.execute("INSERT INTO participants (user_id, course_id, grade) "\
@@ -22,6 +28,9 @@ class CourseRepository:
         self._connection.commit()
 
     def get_mandatory_courses_id(self, degree_id):
+        '''
+        Gets param degree_id's mandatory courses ids
+        '''
 
         cursor = self._connection.cursor()
 
@@ -33,6 +42,9 @@ class CourseRepository:
         return ret
 
     def create_mandatory_enrollments_id(self, user_id, degree_id):
+        '''
+        When creating an account, user is automatically enrolled on all mandatory courses
+        '''
         courses = self.get_mandatory_courses_id(degree_id)
 
         for course in courses:
@@ -40,6 +52,9 @@ class CourseRepository:
 
 
     def get_course_data_mainpage(self):
+        '''
+        Gets user's own courses in nice human-readable form, used in main page
+        '''
         cursor = self._connection.cursor()
 
         sql = "SELECT C.course_name, P.grade, C.rowid FROM courses C, participants P, users U "\
@@ -52,6 +67,9 @@ class CourseRepository:
         return result
 
     def get_user_id_and_degree_id(self, username):
+        '''
+        Gets user_id and degree_id of this username
+        '''
         cursor = self._connection.cursor()
 
         cursor.execute("SELECT rowid, degree_id FROM users WHERE username=?", [username])
@@ -60,6 +78,9 @@ class CourseRepository:
 
 
     def course_exists(self, name, degree_id):
+        '''
+        Checks whether course of this name exists
+        '''
 
         cursor = self._connection.cursor()
 
@@ -71,6 +92,9 @@ class CourseRepository:
         return False
 
     def update_grade(self, course_id, user_id, grade):
+        '''
+        Updates table participants, grades between 0 and 5 accepted
+        '''
         if 0 > int(grade) or int(grade) > 5:
             return
 
@@ -97,6 +121,9 @@ class CourseRepository:
 
 
     def get_course_id(self, course_name, degree_id):
+        '''
+        Get course id based on name
+        '''
         cursor = self._connection.cursor()
 
         cursor.execute("SELECT rowid FROM courses WHERE course_name=? AND degree_id=?",
@@ -105,6 +132,9 @@ class CourseRepository:
         return cursor.fetchone()[0]
 
     def delete_enrollment(self, user_id, course_id):
+        '''
+        Deletes from table participants, called when user leaves a course
+        '''
         cursor = self._connection.cursor()
 
         cursor.execute("DELETE FROM participants WHERE user_id=? AND course_id=?",
@@ -124,6 +154,9 @@ class CourseRepository:
         return False
 
     def calculate_GPA(self, user_id):
+        '''
+        Calculates GPA of completed courses, considers cases where course isn't standard 5 ECTS
+        '''
         cursor = self._connection.cursor()
 
         cursor.execute("SELECT SUM(C.ects * P.grade)/CAST(SUM(C.ects) AS REAL) "\
@@ -150,6 +183,9 @@ class CourseRepository:
     # t_ functions, only used for testing
 
     def t_enrollment_exists(self, user_id, course_id, grade):
+        '''
+        This version check for grade also
+        '''
         cursor = self._connection.cursor()
 
         cursor.execute("SELECT 1 FROM participants WHERE course_id=? "\

@@ -1,3 +1,4 @@
+'''Mimics Flask's session variables'''
 
 class Session:
     def __init__(self, user_id=0, degree_id=0):

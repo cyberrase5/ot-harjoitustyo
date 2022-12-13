@@ -36,11 +36,19 @@ def create_tables(connection):
 
 
 def insert_mandatory_courses_parent(connection):
+    '''
+    Creates all the mandatory courses to table courses,
+    calls degree-specific "child" functions, so CS and math has its own
+    '''
 
     insert_mandatory_courses_compsci(connection)
 
 
 def insert_mandatory_courses_compsci(connection):
+
+    '''
+    Creates mandatory computer science degree courses
+    '''
 
     # basic studies
     course_repository.add_course("Ohjelmoinnin perusteet", 5, 1, True)
@@ -63,6 +71,10 @@ def insert_mandatory_courses_compsci(connection):
 
 
 def initialize_database():
+    '''
+    "normal" database initalization, drop old tables, create new,
+    add mandatory courses
+    '''
     connection = get_database_connection()
 
     drop_tables(connection)
@@ -71,6 +83,8 @@ def initialize_database():
 
 
 def initialize_database_test():
+    '''initialize test database, same as the normal but
+    connection is to test database'''
     connection = test_connection()
     course_repository._connection = test_connection()
 

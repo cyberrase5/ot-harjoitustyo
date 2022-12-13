@@ -7,6 +7,10 @@ class UserRepository:
         self._connection = connection
 
     def add_user(self, username, password, degree):
+        '''
+        Called in registration, checks that username doesn't already exist.
+        Makes entries to table participants for all mandatory courses
+        '''
         cursor = self._connection.cursor()
 
         try:
@@ -36,6 +40,9 @@ class UserRepository:
         return ret
 
     def authenticate_login(self, username, password):
+        '''
+        Called when logging in, RETURNS whether username and password are correct
+        '''
         cursor = self._connection.cursor()
 
         cursor.execute("SELECT 1 FROM users WHERE username=? AND password=?", [username, password])
