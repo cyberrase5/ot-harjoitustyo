@@ -1,5 +1,5 @@
 from tkinter import ttk, constants, IntVar, StringVar
-from UserRepository import user_repository
+from services.services import sisu_service, UsernameInUseError
 
 
 class RegisterView:
@@ -11,6 +11,9 @@ class RegisterView:
         self._password = None
         self._degree_id = None
 
+        self._error_variable = None
+        self._error_label = None
+
         self._handle_login = handle_login
 
         self._initialize()
@@ -20,6 +23,10 @@ class RegisterView:
 
     def destroy(self):
         self._frame.destroy()
+
+    def _handle_error(self, message):
+        self._error_variable.set(message)
+        self._error_label.grid(row=7, column=0, columnspan=2)
     
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
@@ -28,13 +35,33 @@ class RegisterView:
             u = username.get()
             p = password.get()
             di = degree_id.get()
-            user_repository.add_user(u, p, di)
+
+            if len(u) < 1:
+                self._handle_error("Liian lyhyt käyttäjätunnus")
+                return
+            if len(p) < 1:
+                self._handle_error("Liian lyhyt salasana")
+                return
+            if di == 0:
+                self._handle_error("Valitse koulutusohjelma")
+                return
+
+            try:
+                sisu_service.register(u, p, di)
+            except UsernameInUseError:
+                self._handle_error("Käyttäjätunnus jo käytössä")
+                return
+
+
+            self._handle_login()
+
 
         username = StringVar()
         username.set("")
         password = StringVar()
         password.set("")
         degree_id = IntVar()
+        self._error_variable = StringVar(self._frame)
         
         heading_label = ttk.Label(master=self._frame, text="Rekisteröidy")
 
@@ -45,7 +72,7 @@ class RegisterView:
         password_entry = ttk.Entry(master=self._frame, textvariable=password)
 
         radiobutton1 = ttk.Radiobutton(master=self._frame, text="Tietojenkäsittelytieteen kandiohjelma", variable=degree_id, value=1)
-        radiobutton2 = ttk.Radiobutton(master=self._frame, text="Älä paina", variable=degree_id, value=2)
+        radiobutton2 = ttk.Radiobutton(master=self._frame, text="Matemaattisten tieteiden kandiohjelma", variable=degree_id, value=2)
 
         button = ttk.Button(master=self._frame, text="Luo käyttäjä", command=lambda: create_user(self))
 
@@ -53,6 +80,12 @@ class RegisterView:
             master=self._frame,
             text="Tai kirjaudu sisään",
             command=self._handle_login
+        )
+
+        self._error_label = ttk.Label(
+            master=self._frame,
+            textvariable=self._error_variable,
+            foreground="red"
         )
 
         heading_label.grid(row=0, column=0, columnspan=2)

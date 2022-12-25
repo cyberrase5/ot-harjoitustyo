@@ -1,6 +1,6 @@
 import unittest
-from UserRepository import user_repository
-from CourseRepository import course_repository
+from repositories.UserRepository import user_repository
+from repositories.CourseRepository import course_repository
 from database_connection import test_connection
 from initialize_database import initialize_database_test
 
@@ -74,6 +74,7 @@ class TestUserRepository(unittest.TestCase):
 
     def test_add_course_to_curriculum_no_enrollment_duplicates(self):
         participants_initial_size = course_repository.participants_size()
+        print(participants_initial_size)
 
         course_repository.add_course_to_curriculum("JYM", 5, 1, 1)
         self.assertEqual(course_repository.participants_size(), participants_initial_size + 1)

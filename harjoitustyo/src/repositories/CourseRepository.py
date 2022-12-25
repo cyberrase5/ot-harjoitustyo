@@ -1,5 +1,4 @@
 from database_connection import get_database_connection
-from session import session
 
 class CourseRepository:
     def __init__(self, connection):
@@ -51,7 +50,7 @@ class CourseRepository:
             self.add_enrollment(user_id, course[0])
 
 
-    def get_course_data_mainpage(self):
+    def get_course_data_mainpage(self, user_id):
         '''
         Gets user's own courses in nice human-readable form, used in main page
         '''
@@ -60,21 +59,11 @@ class CourseRepository:
         sql = "SELECT C.course_name, P.grade, C.rowid FROM courses C, participants P, users U "\
             "WHERE C.rowid=P.course_id AND P.user_id=U.rowid AND U.rowid=? ORDER BY C.rowid ASC"
 
-        cursor.execute(sql, [session._user_id])
+        cursor.execute(sql, [user_id])
 
         result = cursor.fetchall()
 
         return result
-
-    def get_user_id_and_degree_id(self, username):
-        '''
-        Gets user_id and degree_id of this username
-        '''
-        cursor = self._connection.cursor()
-
-        cursor.execute("SELECT rowid, degree_id FROM users WHERE username=?", [username])
-
-        return cursor.fetchone()
 
 
     def course_exists(self, name, degree_id):
@@ -179,6 +168,25 @@ class CourseRepository:
 
         return cursor.fetchone()[0]
 
+    def total_ects_in_curriculum(self, user_id):
+        cursor = self._connection.cursor()
+
+        sql = "SELECT COALESCE(SUM(C.ects), 0) from participants P, courses C "\
+            "WHERE P.user_id=? AND C.rowid=P.course_id"
+
+        cursor.execute(sql, [user_id])
+
+        return cursor.fetchone()[0]
+
+    def completed_ects(self, user_id):
+        cursor = self._connection.cursor()
+
+        sql = "SELECT COALESCE(SUM(C.ects), 0) from participants P, courses C "\
+            "WHERE P.user_id=? AND C.rowid=P.course_id AND P.grade>0"
+
+        cursor.execute(sql, [user_id])
+
+        return cursor.fetchone()[0]
 
     # t_ functions, only used for testing
 

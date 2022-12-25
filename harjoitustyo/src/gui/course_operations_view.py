@@ -1,11 +1,13 @@
 from tkinter import ttk, constants, StringVar
-from session import session
-from CourseRepository import course_repository
+from services.services import sisu_service, InvalidGradeError
 
 class CoursesOperationsView:
     def __init__(self, root, handle_main_view):
         self._root = root
         self._frame = None
+
+        self._error_variable = None
+        self._error_label = None
 
         self._handle_main_view = handle_main_view
 
@@ -17,6 +19,9 @@ class CoursesOperationsView:
     def destroy(self):
         self._frame.destroy()
 
+    def _handle_error(self, message):
+        self._error_variable.set(message)
+        self._error_label.grid(row=12, column=0, columnspan=2)
 
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
@@ -26,27 +31,35 @@ class CoursesOperationsView:
         add_course_name = StringVar()
         add_ects = StringVar()
         delete_id = StringVar()
+        self._error_variable = StringVar(self._frame)
 
         def update_grade():
             course_id = update_course_id.get()
             grade = update_course_grade.get()
-            user_id = session._user_id
+            user_id = sisu_service.user_id
 
-            course_repository.update_grade(course_id, user_id, grade)
+            try:
+                sisu_service.update_grade(course_id, user_id, grade)
+            except InvalidGradeError:
+                self._handle_error("Arvosanan pitää olla väliltä 0-5")
+                return
+
+            self._error_variable.set("")
+
 
         def add_course():
             course_name = add_course_name.get()
             ects = int(add_ects.get())
-            degree_id = session._degree_id
-            user_id = session._user_id
+            degree_id = sisu_service.degree_id
+            user_id = sisu_service.user_id
 
-            course_repository.add_course_to_curriculum(course_name, ects, degree_id, user_id)
+            sisu_service.add_course_to_curriculum(course_name, ects, degree_id, user_id)
 
         def delete_enrollment():
             del_id = delete_id.get()
-            user_id = session._user_id
+            user_id = sisu_service.user_id
 
-            course_repository.delete_enrollment(user_id, del_id)
+            sisu_service.delete_enrollment(user_id, del_id)
 
 
         heading_label = ttk.Label(master=self._frame, text="Lisää kurssi tai päivitä arvosanaa")
@@ -65,6 +78,12 @@ class CoursesOperationsView:
             master=self._frame,
             text="Päivitä arvosanaa",
             command=lambda: update_grade()
+        )
+
+        self._error_label = ttk.Label(
+            master=self._frame,
+            textvariable=self._error_variable,
+            foreground="red"
         )
 
         update_main_label.grid(row=1, column=0, columnspan=2)
@@ -121,4 +140,4 @@ class CoursesOperationsView:
             text="Takaisin",
             command=self._handle_main_view
         )
-        return_button.grid(row=12, column=0, columnspan=2)
+        return_button.grid(row=13, column=0, columnspan=2)

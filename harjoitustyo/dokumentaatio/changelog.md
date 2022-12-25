@@ -23,3 +23,7 @@
 - Lisää GUI-sivu näille
 - Tarkasta omien opintojen keskiarvo
 - Lisätty pari testiä
+
+# Viikko 7
+- Lisätty tiedon tulostamista virheen tapahtuessa
+- Käyttäjä näkee kuinka monta noppaa on suorittanut

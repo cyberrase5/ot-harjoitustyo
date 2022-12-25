@@ -4,5 +4,6 @@
 5.12.2022 ### 1 tunti, GUI säätöä
 6.12.2022 ### 4 tuntia, GUI ja tietokannan säätämistä
 13.12.2022 ### 4 tuntia, KAn näkeminen, kurssien lisääminen ja poistaminen, GUI aikalailla loppuun
+23.12.2022 ### 2 tuntia, eri asioiden printtailua käyttäjälle
 
-= 17 tuntia
+= 18 tuntia

@@ -1,6 +1,5 @@
-from tkinter import ttk, constants, IntVar, StringVar
-from session import session
-from CourseRepository import course_repository
+from tkinter import ttk, constants
+from services.services import sisu_service
 
 class MainView:
     def __init__(self, root, handle_login, handle_course_operations):
@@ -38,13 +37,24 @@ class MainView:
         heading_label.grid(row=0, column=0, columnspan=2)
         course_operations_button.grid(row=1, column=0)
 
-        gpa_str = course_repository.calculate_GPA(session._user_id)
+        user_id = sisu_service.user_id
+
+        gpa_str = sisu_service.calculate_GPA(user_id)
         gpa_text = "Opintojen keskiarvo: " + str(gpa_str)[0:4]
         gpa_label = ttk.Label(master=self._frame, text=gpa_text)
         gpa_label.grid(row=2, column=0)
 
+        total_ects = sisu_service.total_ects_in_curriculum(user_id)
+        current_ects = sisu_service.completed_ects(user_id)
+        percent = int(current_ects / total_ects * 100)
+        ects_text = str(current_ects) + " / " + str(total_ects) + " op (" + str(percent) + "% suoritettu)"
+
+
+        ects_label = ttk.Label(master=self._frame, text=ects_text)
+        ects_label.grid(row=3, column=0)
+
         i = 0
-        courses = course_repository.get_course_data_mainpage()
+        courses = sisu_service.get_course_data_mainpage(user_id)
         length = len(courses)
 
         for course in courses:
@@ -56,8 +66,8 @@ class MainView:
 
             label = ttk.Label(master=self._frame, text=output)
 
-            label.grid(row=i+3, column=0)
+            label.grid(row=i+4, column=0)
             i += 1
 
 
-        logout_button.grid(row=length+2, column=0, columnspan=2)
+        logout_button.grid(row=length+4, column=0, columnspan=2)

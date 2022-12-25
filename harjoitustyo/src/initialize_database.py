@@ -1,5 +1,5 @@
 from database_connection import get_database_connection, test_connection
-from CourseRepository import course_repository
+from repositories.CourseRepository import course_repository
 
 
 def drop_tables(connection):
@@ -42,12 +42,13 @@ def insert_mandatory_courses_parent(connection):
     '''
 
     insert_mandatory_courses_compsci(connection)
+    insert_mandatory_courses_math(connection)
 
 
 def insert_mandatory_courses_compsci(connection):
 
     '''
-    Creates mandatory computer science degree courses
+    Creates mandatory computer science degree courses, id: 1
     '''
 
     # basic studies
@@ -69,6 +70,20 @@ def insert_mandatory_courses_compsci(connection):
 
     connection.commit()
 
+def insert_mandatory_courses_math(connection):
+
+    '''
+    Creates mandatory math degree courses, id: 2
+    '''
+
+    # basic studies
+    course_repository.add_course("Johdatus yliopistomatematiikkaan", 5, 2, True)
+    course_repository.add_course("Lineaarialgebra ja matriisilaskenta I", 5, 2, True)
+    course_repository.add_course("Raja-arvot", 5, 2, True)
+    course_repository.add_course("Differentiaalilaskenta", 5, 2, True)
+    course_repository.add_course("Integraalilaskenta", 5, 2, True)
+
+    connection.commit()
 
 def initialize_database():
     '''
@@ -83,15 +98,23 @@ def initialize_database():
 
 
 def initialize_database_test():
-    '''initialize test database, same as the normal but
-    connection is to test database'''
+    '''
+    Set up test database
+    '''
     connection = test_connection()
     course_repository._connection = test_connection()
 
-    drop_tables(connection)
-    create_tables(connection)
+    t_emtpy_tables(connection)
     insert_mandatory_courses_parent(connection)
 
+def t_emtpy_tables(connection):
+    cursor = connection.cursor()
+
+    cursor.execute("DELETE FROM users")
+    cursor.execute("DELETE FROM courses")
+    cursor.execute("DELETE FROM participants")
+
+    connection.commit()
 
 if __name__ == "__main__":
     initialize_database()

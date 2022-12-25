@@ -1,7 +1,5 @@
 from tkinter import ttk, constants, StringVar
-from UserRepository import user_repository
-from CourseRepository import course_repository
-from session import session
+from services.services import sisu_service, InvalidCredentialsError
 
 
 class LoginView:
@@ -11,6 +9,9 @@ class LoginView:
 
         self._username = None
         self._password = None
+
+        self._error_variable = None
+        self._error_label = None
 
         self._handle_register = handle_register
         self._handle_main = handle_main
@@ -23,29 +24,38 @@ class LoginView:
     def destroy(self):
         self._frame.destroy()
 
+    def _handle_error(self, message):
+        self._error_variable.set(message)
+        self._error_label.grid(row=5, column=0, columnspan=2)
+
     def  _login_handler(self):
         
         username = self._username.get()
         password = self._password.get()
 
-        if user_repository.authenticate_login(username, password):
+        try:
+            sisu_service.authenticate_login(username, password)
+        except InvalidCredentialsError:
+            self._handle_error("Väärä käyttäjätunnus tai salasana")
+            return
 
-            # update session
-            ids = course_repository.get_user_id_and_degree_id(username)
-            session.set_vars(ids[0], ids[1]) # sets "session" variables
+        ids = sisu_service.get_user_id_and_degree_id(username)
+        sisu_service.update_logged_in_ids(ids[0], ids[1])
 
-            self._handle_main()
+        self._handle_main()
+            
     
     def _initialize(self):
         
         self._frame = ttk.Frame(master=self._root)
 
-        session.set_vars(0, 0)
+        sisu_service.update_logged_in_ids(0, 0)
 
         self._username = StringVar()
         self._username.set("")
         self._password = StringVar()
         self._password.set("")
+        self._error_variable = StringVar(self._frame)
         
         heading_label = ttk.Label(master=self._frame, text="Kirjaudu sisään")
 
@@ -67,6 +77,12 @@ class LoginView:
             command=self._handle_register
         )
 
+        self._error_label = ttk.Label(
+            master=self._frame,
+            textvariable=self._error_variable,
+            foreground="red"
+        )
+
         heading_label.grid(row=0, column=0, columnspan=2)
 
         username_label.grid(row=1, column=0)
@@ -76,4 +92,4 @@ class LoginView:
         password_entry.grid(row=2, column=1)
 
         login_button.grid(row=4, column=0, columnspan=2)
-        register_button.grid(row=6, column=0, columnspan=2)
+        register_button.grid(row=7, column=0, columnspan=2)

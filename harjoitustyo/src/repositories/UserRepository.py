@@ -1,5 +1,4 @@
 from database_connection import get_database_connection
-from CourseRepository import course_repository
 
 
 class UserRepository:
@@ -20,14 +19,11 @@ class UserRepository:
         except:
             print("Error")
             self._connection.commit() # dumb but too slow otherwise
-            return
+            return False
 
         self._connection.commit()
 
-        # enroll on mandatory courses
-        user_id = cursor.execute("SELECT rowid FROM users WHERE username=?", [username])
-        user_id = user_id.fetchone()[0]
-        course_repository.create_mandatory_enrollments_id(user_id, degree)
+        return True
 
 
     def users_size(self):
@@ -52,5 +48,15 @@ class UserRepository:
             return True
 
         return False
+
+    def get_user_id_and_degree_id(self, username):
+        '''
+        Gets user_id and degree_id of this username
+        '''
+        cursor = self._connection.cursor()
+
+        cursor.execute("SELECT rowid, degree_id FROM users WHERE username=?", [username])
+
+        return cursor.fetchone()
 
 user_repository = UserRepository(get_database_connection())
