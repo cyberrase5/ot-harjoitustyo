@@ -30,3 +30,6 @@ Sisu 2.0 on Sisu-kopio, eli eräänlainen opintojen seurausjärjestelmä. Luo tu
 - Lisää kursseja omaan opintosuunnitelmaan
 - Päivitä kurssiesi arvosanoja
 - Poista kursseja omasta opintosuunnitelmasta
+
+## Pohdintaa laajuudesta
+- Koulutusohjelmia voi lisätä (kohtalaisen) helposti, pitää vain muistaa lisätä pakolliset kurssit initialize_database.py

@@ -38,6 +38,21 @@ class CoursesOperationsView:
             grade = update_course_grade.get()
             user_id = sisu_service.user_id
 
+            if len(course_id) <= 0:
+                self._handle_error("Syötä kurssin id")
+                return
+            if len(grade) <= 0:
+                self._handle_error("Syötä arvosana")
+                return
+
+            if not course_id.isnumeric():
+                self._handle_error("Syötä kelpo kurssin id")
+                return
+            if not grade.isnumeric():
+                self._handle_error("Syötä kelpo arvosana")
+                return
+
+
             try:
                 sisu_service.update_grade(course_id, user_id, grade)
             except InvalidGradeError:
@@ -49,15 +64,28 @@ class CoursesOperationsView:
 
         def add_course():
             course_name = add_course_name.get()
-            ects = int(add_ects.get())
+            ects = add_ects.get()
             degree_id = sisu_service.degree_id
             user_id = sisu_service.user_id
+
+            if len(course_name) <= 0:
+                self._handle_error("Syötä kurssin nimi")
+                return
+            if len(ects) <= 0:
+                self._handle_error("Syötä opintopisteiden määrä")
+                return
+
+            if not ects.isnumeric():
+                self._handle_error("Syötä kelpo opintopisteiden määrä")
+                return
 
             try:
                 sisu_service.add_course_to_curriculum(course_name, ects, degree_id, user_id)
             except NegativeEctsError:
                 self._handle_error("Opintopisteet eivät voi olla negatiivisia")
                 return
+
+            self._error_variable.set("")
 
         def delete_enrollment():
             del_id = delete_id.get()
