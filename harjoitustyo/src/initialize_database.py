@@ -38,7 +38,7 @@ def create_tables(connection):
 def insert_mandatory_courses_parent(connection):
     '''
     Creates all the mandatory courses to table courses,
-    calls degree-specific "child" functions, so CS and math has its own
+    calls degree-specific "child" functions, so CS and math has its own etc.
     '''
 
     insert_mandatory_courses_compsci(connection)

@@ -97,7 +97,7 @@ class TestUserRepository(unittest.TestCase):
         sisu_service.add_course_to_curriculum("Alon", 10, 1, 1)
         sisu_service.update_grade(11, 1, 5)
 
-        self.assertEqual(sisu_service.calculate_GPA(1), 5)
+        self.assertEqual(sisu_service.calculate_gpa(1), 5)
 
     def test_s_gpa_correctly_many_courses(self):
         sisu_service.register("rase5", "moi123", 1)
@@ -106,4 +106,4 @@ class TestUserRepository(unittest.TestCase):
         sisu_service.update_grade(2, 1, 0)
         sisu_service.update_grade(11, 1, 5)
 
-        self.assertEqual(sisu_service.calculate_GPA(1), 2.5)
+        self.assertEqual(sisu_service.calculate_gpa(1), 2.5)

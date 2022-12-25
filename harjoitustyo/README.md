@@ -3,13 +3,17 @@ Sisu 2.0 on Sisu-kopio, eli eräänlainen opintojen seurausjärjestelmä. Luo tu
 
 
 # Dokumentaatio
-[vaatimusmaarittely.md](dokumentaatio/vaatimusmaarittely.md)
+[Käyttöohje](dokumentaatio/kayttoohje.md)
 
-[tuntikirjanpito.md](dokumentaatio/tuntikirjanpito.md)
+[Vaatimusmaarittely](dokumentaatio/vaatimusmaarittely.md)
 
-[changelog.md](dokumentaatio/changelog.md)
+[Arkkitehtuurikuvaus](dokumentaatio/arkkitehtuuri.md)
 
-[arkkitehtuurikuvaus.md](dokumentaatio/apologia.md)
+[Testidokumentti](dokumentaatio/testidokumentti.md)
+
+[Changelog](dokumentaatio/changelog.md)
+
+[Tuntikirjanpito](dokumentaatio/tuntikirjanpito.md)
 
 
 # Käteviä komentoja
@@ -17,17 +21,12 @@ Sisu 2.0 on Sisu-kopio, eli eräänlainen opintojen seurausjärjestelmä. Luo tu
 - poetry run invoke initialize (luo tietokannan)
 - poetry run invoke start (käynnistää)
 - poetry run invoke test (ajaa testit)
+- poetry run invoke coverage-report (luo testikattavuusraportin)
 
 
 # Nykyiset toiminnot
 - Luo käyttäjä, kirjaudu sisään
-- Tarkastele saamiasi arvosanoja
+- Tarkastele saamiasi arvosanoja ja opintojen etenemistä
 - Lisää kursseja omaan opintosuunnitelmaan
 - Päivitä kurssiesi arvosanoja
 - Poista kursseja omasta opintosuunnitelmasta
-
-
-# TODO
-- Tarkista, ettei kurssia ole olemassa
-- Tarkista arvosanan päivityksen kentät
-- Tarkista syötteet, ei tyhjiä yms.

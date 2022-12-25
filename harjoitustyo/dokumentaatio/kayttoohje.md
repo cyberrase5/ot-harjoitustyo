@@ -21,7 +21,7 @@
 - Voit myös kirjautua ulos painamalla Kirjaudu ulos nappia
 
 ## Kurssien hallinta
-Tällä sivulla lisätään ja poistetaan kursseja omasta opintosuunnitelmasta, ja päivitetään niiden arvosanoja
+Tällä sivulla lisätään ja poistetaan kursseja omasta opintosuunnitelmasta, ja päivitetään niiden arvosanoja.
 
 ### Päivitä arvosanaa
 - Arvosanat ovat väliltä 0-5

@@ -142,6 +142,10 @@ class CourseRepository: # pylint: disable=C0103
         self._connection.commit()
 
     def already_enrolled(self, user_id, course_id):
+        '''
+        Checks table participants if a row with this user id and course id exists,
+        RETURN True if exists, False if not
+        '''
         cursor = self._connection.cursor()
 
         cursor.execute("SELECT 1 FROM participants WHERE user_id=? AND course_id=?",
@@ -179,6 +183,10 @@ class CourseRepository: # pylint: disable=C0103
         return cursor.fetchone()[0]
 
     def total_ects_in_curriculum(self, user_id):
+        '''
+        Calculates sum of all user's courses' ects, even if not completed (grade == -1)
+        RETURNS the sum
+        '''
         cursor = self._connection.cursor()
 
         sql = "SELECT COALESCE(SUM(C.ects), 0) from participants P, courses C "\
@@ -189,6 +197,10 @@ class CourseRepository: # pylint: disable=C0103
         return cursor.fetchone()[0]
 
     def completed_ects(self, user_id):
+        '''
+        Calculates sum of user's completed courses' ects (grade != -1)
+        RETURNS the sum
+        '''
         cursor = self._connection.cursor()
 
         sql = "SELECT COALESCE(SUM(C.ects), 0) from participants P, courses C "\
