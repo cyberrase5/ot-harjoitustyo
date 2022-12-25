@@ -104,7 +104,8 @@ def initialize_database_test():
     connection = test_connection()
     course_repository._connection = test_connection()
 
-    t_emtpy_tables(connection)
+    drop_tables(connection)
+    create_tables(connection)
     insert_mandatory_courses_parent(connection)
 
 def t_emtpy_tables(connection):
