@@ -20,10 +20,8 @@ Mahdollisia lisätoimintoja:
 - Päivitä kurssin arvosanaa
 - Lisää kurssi opintosuunnitelmaan
 - Poista kurssi opintosuunnitelmasta
-- Tarkista oma keskiarvo
+- Tarkista oma keskiarvo ja noppien määrä
 
 
 # Osittain toteutetut ominaisuudet
-- GUI, aikalailla valmis
-- Osan pakollisista kursseista voi lisätä
-- Em. kursseista voi nähdä arvosanansa (vakiona ei suoritettu)
+- En jaksanut lisätä kaikkia pakollisia kursseja, mutta ehkä se ei ole relevanttia

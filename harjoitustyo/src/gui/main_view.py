@@ -39,7 +39,7 @@ class MainView:
 
         user_id = sisu_service.user_id
 
-        gpa_str = sisu_service.calculate_GPA(user_id)
+        gpa_str = sisu_service.calculate_gpa(user_id)
         gpa_text = "Opintojen keskiarvo: " + str(gpa_str)[0:4]
         gpa_label = ttk.Label(master=self._frame, text=gpa_text)
         gpa_label.grid(row=2, column=0)

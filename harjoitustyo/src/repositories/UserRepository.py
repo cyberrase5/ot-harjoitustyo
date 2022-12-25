@@ -1,7 +1,7 @@
 from database_connection import get_database_connection
 
 
-class UserRepository:
+class UserRepository: # pylint disable=invalid-name
     def __init__(self, connection):
         self._connection = connection
 

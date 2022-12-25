@@ -5,5 +5,6 @@
 6.12.2022 ### 4 tuntia, GUI ja tietokannan säätämistä
 13.12.2022 ### 4 tuntia, KAn näkeminen, kurssien lisääminen ja poistaminen, GUI aikalailla loppuun
 23.12.2022 ### 2 tuntia, eri asioiden printtailua käyttäjälle
+25.12.2022 ### 6 tuntia, refaktorointi, lopputestit, dokumentaatio
 
-= 18 tuntia
+= 25 tuntia

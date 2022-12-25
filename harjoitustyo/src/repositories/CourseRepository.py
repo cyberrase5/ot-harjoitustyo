@@ -1,6 +1,6 @@
 from database_connection import get_database_connection
 
-class CourseRepository:
+class CourseRepository: # pylint: disable=C0103
     def __init__(self, connection):
         self._connection = connection
 
@@ -8,12 +8,18 @@ class CourseRepository:
         '''
         Creates a course
         '''
+
+        if int(ects) < 0:
+            return -1
+
         cursor = self._connection.cursor()
 
         cursor.execute("INSERT INTO courses (course_name, ects, degree_id, mandatory)"\
             " VALUES (?, ?, ?, ?)", [name, ects, degree_id, mandatory])
 
         self._connection.commit()
+
+        return 1
 
     def add_enrollment(self, user_id, course_id):
         '''
@@ -101,12 +107,16 @@ class CourseRepository:
         '''
 
         if not self.course_exists(course_name, degree_id):
-            self.add_course(course_name, ects, degree_id, 0)
+            ret_val = self.add_course(course_name, ects, degree_id, 0)
+            if ret_val == -1:
+                return -1
 
         course_id = self.get_course_id(course_name, degree_id)
 
         if not self.already_enrolled(user_id, course_id):
             self.add_enrollment(user_id, course_id)
+
+        return 1
 
 
     def get_course_id(self, course_name, degree_id):

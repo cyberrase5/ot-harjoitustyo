@@ -27,3 +27,4 @@
 # Viikko 7
 - Lisätty tiedon tulostamista virheen tapahtuessa
 - Käyttäjä näkee kuinka monta noppaa on suorittanut
+- Uudelleenfaktoroitu gui -> services -> repositories -rakenteeseen

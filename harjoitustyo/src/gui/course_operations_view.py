@@ -1,5 +1,5 @@
 from tkinter import ttk, constants, StringVar
-from services.services import sisu_service, InvalidGradeError
+from services.services import sisu_service, InvalidGradeError, NegativeEctsError
 
 class CoursesOperationsView:
     def __init__(self, root, handle_main_view):
@@ -53,7 +53,11 @@ class CoursesOperationsView:
             degree_id = sisu_service.degree_id
             user_id = sisu_service.user_id
 
-            sisu_service.add_course_to_curriculum(course_name, ects, degree_id, user_id)
+            try:
+                sisu_service.add_course_to_curriculum(course_name, ects, degree_id, user_id)
+            except NegativeEctsError:
+                self._handle_error("Opintopisteet eivät voi olla negatiivisia")
+                return
 
         def delete_enrollment():
             del_id = delete_id.get()
